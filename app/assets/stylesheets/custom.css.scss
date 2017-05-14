@@ -1,2 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar {
+  background-color:#70bc79;
+}
+.jumbotron {
+  background-image:asset-url('cuttingboard.jpg');
+  background-size:cover;
+}
+
