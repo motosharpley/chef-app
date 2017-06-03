@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <%= render 'shared/page_title', title: @recipe.name %>
+  <div class="row">
+    <div class="well col-md-8 col-md-offset-2">
+      <h4 class="description"><strong>Directions </strong></h4>
+      <hr />
+      <%= simple_format(@recipe.description) %>
+      <hr />
+      <div class="pull-right">
+      <p>
+        <em>Created by:</em>
+      </p>
+      <p class="center">
+        <%= link_to gravatar_for(@recipe.user), recipes_path %>
+      </p>
+      <p class="center">
+        <small><%= @recipe.user.username.capitalize %></small>
+        <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
+      </p>
+     </div>
+    </div>  
+  </div>
+</div>

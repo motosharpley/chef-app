@@ -1,21 +1,20 @@
-<br><br><br>
-<h2 align="center">What recipe will you try today!</h2>
-<hr />
-
-<% @recipes.each do |recipe| %>
-<div class="row">
-  <div class="col-md-2">
-    <section class="center">
-      
-    </section>
+<div class="jumbotron">
+  <%= render 'shared/page_title', title: "What recipe will you try today!"  %>
+  <% @recipes.each do |recipe| %>
+  <div class="row">
+    <div class="col-md-2">
+      <section class="center recipe-avatar">
+        <%= gravatar_for(recipe.user, size: 100) %>
+      </section>
+    </div>
+    <div class="col-md-8 well">
+      <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
+      <p><%= truncate(recipe.description, length:150) %></p>
+      <p>
+        <span class="quiet"></span><small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small></span>
+      </p>
+    </div>
   </div>
-  <div class="col-md-8 well">
-    <h4><%= recipe.name %></h4>
-    <p><%= truncate(recipe.description, length:150) %></p>
-    <p>
-      <span class="quiet"></span><small>Created<%= time_ago_in_words(recipe.created_at) %> ago</small></span>
-    </p>
-  </div>
-</div>
 
 <% end %>
+</div>
