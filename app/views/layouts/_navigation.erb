@@ -14,11 +14,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><%= link_to "Home", root_path %><span class="sr-only">(current)</span></li>
+        <li><%= link_to "Recipes", recipes_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu"> 
             <li><a href="#">By Ingredient</a></li>
             <li><a href="#">By Type of Food</a></li>
             <li><a href="#">Something else here</a></li>
