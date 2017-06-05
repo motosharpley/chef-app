@@ -3,7 +3,7 @@ require 'test_helper'
 class RecipeTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.create!(username: "testuser", email: "tester@email.com")
+    @user = User.create!(username: "testuser", email: "tester@email.com", password: "password", password_confirmation: "password")
     @recipe = @user.recipes.build(name: "Test recipe name", description: "test recipe description")
   end
   
