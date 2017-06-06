@@ -12,4 +12,14 @@ class UsersListingTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), text: @user.username.capitalize
     assert_select "a[href=?]", user_path(@user2), text: @user2.username.capitalize
   end
+  
+  test "should delete user" do
+    get users_path
+    assert_template 'users/index'
+    assert_difference 'User.count', -1 do
+      delete user_path(@user2)
+    end
+    assert_redirected_to users_path
+    assert_not flash.empty?
+  end
 end
