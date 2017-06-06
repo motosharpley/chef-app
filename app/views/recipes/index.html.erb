@@ -1,4 +1,10 @@
 <div class="jumbotron">
   <%= render 'shared/page_title', title: "What recipe will you try today!"  %>
+  <div align="center">
+    <%= will_paginate %>
+  </div>
   <%= render 'recipe', obj:@recipes %>
+  <div align="center">
+    <%= will_paginate %>
+  </div>
 </div>
