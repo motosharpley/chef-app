@@ -8,7 +8,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "reject invalid edit" do
     get edit_user_path(@user)
     assert_template 'users/edit'
-    patch user_path(@user), params: { user: { username: " ", email: "test@email.com"} }
+    patch user_path(@user), params: { user: { username: " ", email: "test@email.com" } }
     assert_template 'users/edit'
     assert_select 'h2.panel-title'
     assert_select 'div.panel-body'
@@ -17,7 +17,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "accept valid update" do
     get edit_user_path(@user)
     assert_template 'users/edit'
-    patch user_path(@user), params: { user: { username: "testchef1", email: "test1@email.com"} }
+    patch user_path(@user), params: { user: { username: "testchef1", email: "test1@email.com" } }
     assert_redirected_to @user
     assert_not flash.empty?
     @user.reload
