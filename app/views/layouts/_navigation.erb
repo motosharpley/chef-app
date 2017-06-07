@@ -15,19 +15,21 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><%= link_to "Home", root_path %><span class="sr-only">(current)</span></li>
-        <li><%= link_to "Recipes", recipes_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
-          <ul class="dropdown-menu"> 
-            <li><a href="#">By Ingredient</a></li>
-            <li><a href="#">By Type of Food</a></li>
-            <li><%= link_to "Add New Recipe", new_recipe_path %></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to "Chefs Listing", users_path %></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        <li><%= link_to "All Recipes", recipes_path %></li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
+            <ul class="dropdown-menu"> 
+              <li><a href="#">By Ingredient</a></li>
+              <li><a href="#">By Type of Food</a></li>
+              <li><%= link_to "Add New Recipe", new_recipe_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Chefs Listing", users_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        <% end %>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -36,17 +38,21 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Login", login_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Profile<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">My Recipes</a></li>
-            <li><a href="#">My Favorites</a></li>
-            <li><a href="#">Account Settings</a></li>
-            <li role="separator" class="divider"></li>
-            <li><%= link_to "Log out", logout_path, method: :delete %></li>
-          </ul>
-        </li>
+        <li><%= link_to "Sign up", signup_path %></li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username.capitalize %>'s Profile<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "View your Profile", user_path(current_user) %></li>
+              <li><%= link_to "Edit your profile", edit_user_path(current_user) %></li>
+              <li><a href="#">Account Settings</a></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Login", login_path %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

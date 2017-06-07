@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   def index
     @users = User.paginate(page: params[:page], per_page: 3)
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Welcome #{@user.username} to Chef App!"
       redirect_to user_path(@user)
     else
@@ -19,16 +21,14 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
     @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 3)
   end
   
   def edit
-    @user = User.find(params[:id])
+
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Your account was successfully updated"
       redirect_to @user
@@ -38,7 +38,6 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[:danger] = "User and all associated recipes have been deleted!"
     redirect_to users_path
@@ -49,5 +48,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
+  
+  def set_user
+    @user = User.find(params[:id])    
+  end
+  
   
 end
