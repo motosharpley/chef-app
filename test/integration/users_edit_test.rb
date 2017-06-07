@@ -6,6 +6,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
   
   test "reject invalid edit" do
+    sign_in_as(@user, "password")
     get edit_user_path(@user)
     assert_template 'users/edit'
     patch user_path(@user), params: { user: { username: " ", email: "test@email.com" } }
@@ -15,6 +16,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
   
   test "accept valid update" do
+    sign_in_as(@user, "password")
     get edit_user_path(@user)
     assert_template 'users/edit'
     patch user_path(@user), params: { user: { username: "testchef1", email: "test1@email.com" } }
