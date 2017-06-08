@@ -20,8 +20,11 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
             <ul class="dropdown-menu"> 
               <li><%= link_to "All Recipes", recipes_path %></li>
-              <li><a href="#">By Ingredient</a></li>
-              <li><a href="#">By Type of Food</a></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "All Ingredients", ingredients_path %></li>
+              <% Ingredient.all.each do |ingredient| %>
+                <li><%= link_to ingredient.name.capitalize, ingredient_path(ingredient) %></li>
+              <% end %>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Chefs Listing", users_path %></li>
               <li role="separator" class="divider"></li>
@@ -47,6 +50,10 @@
               <li><%= link_to "View your Profile", user_path(current_user) %></li>
               <li><%= link_to "Edit your profile", edit_user_path(current_user) %></li>
               <li><%= link_to "Add New Recipe", new_recipe_path %></li>
+              <% if logged_in? && current_user.admin? %>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Add New Ingredient", new_ingredient_path %></li>
+              <% end %>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Log out", logout_path, method: :delete %></li>
             </ul>

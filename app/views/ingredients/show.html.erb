@@ -1,0 +1,18 @@
+<div class="jumbotron">
+   <%= render 'shared/page_title', title:  "#{@ingredient.name}" %>
+   <% if @ingredient.recipes.count != 0 %>
+    <h4 align="center">Recipes containing <%= @ingredient.name.capitalize %></h4>
+    <div align="center">
+     <%= will_paginate @ingredient_recipes %>
+    </div>
+    <%= render 'recipes/recipe', obj:@ingredient_recipes %>
+    <div align="center">
+     <%= will_paginate @ingredient_recipes %>
+    </div>
+   <% else %>
+    <h4 align="center"><%= @ingredient.name.capitalize %> does not have any recipes yet</h4>
+   <% end %>
+   <% if logged_in? && current_user.admin? %>
+     <div align="center"><%= link_to "Edit this Ingredient", edit_ingredient_path(@ingredient) %></div>
+   <% end %>
+</div>
