@@ -12,7 +12,8 @@
       <p>Ingredients: <%= render recipe.ingredients %></p>
       <% end %>
       <p>
-        <span class="quiet"></span><small>Created <%= time_ago_in_words(recipe.created_at) %> ago - by <%= link_to (recipe.user.username.capitalize), user_path(recipe.user) %></small></span>
+        <span class="quiet"></span><small>Created <%= time_ago_in_words(recipe.created_at) %> ago - by <%= link_to (recipe.user.username.capitalize), user_path(recipe.user) %>
+                                                                    | <%= pluralize(recipe.comments.count, 'Comment') %></small></span>
       </p>
       <% if logged_in? && (current_user == recipe.user || current_user.admin?) %>
         <div class="recipe-actions">

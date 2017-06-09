@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+a {
+  color:#70bc79;
+}
 .navbar {
   background-color:#70bc79;
 }
@@ -8,33 +10,38 @@
   background-image:asset-url('cuttingboard.jpg');
   background-size:cover;
 }
+.btn-info {
+  background-color:#70bc79;
+}
 
 .description {
   margin-top: 0;
 }
-
-.well a {
-  
+.badge {
+  color: #fff;
+  background-color:#70bc79;
+}
+.badge a {
+  color: #fff;
 }
 .recipe-avatar {
   margin-top: 10px;
 }
-
 body {
   margin-top: 60px;
 }
-
 .listing {
   list-style: none;
   padding-left: 0;
 }
-
 .chef-title {
   color:#70bc79;
   font-weight: bold;
   font-size: 1.25em;
 }
-
 .input_checkbox {
   width: auto !important;
+}
+.well {
+  background-color: #eee;
 }
