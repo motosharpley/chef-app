@@ -6,8 +6,9 @@ class CommentsController < ApplicationController
     @comment = @recipe.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      flash[:success] = "Comment was created successfully"
-      redirect_to recipe_path(@recipe)
+      ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
+      #flash[:success] = "Comment was created successfully"
+      #redirect_to recipe_path(@recipe)
     else
       flash[:danger] = "Comment could not be created"
       redirect_to :back
