@@ -45,3 +45,30 @@ body {
 .well {
   background-color: #eee;
 }
+.center-block {
+  float: none;
+}
+.chat-container {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 150px;
+  width: 80;
+}
+.message-container {
+  .form-control{
+    float: left;
+    width: 80%;
+  }
+  .btn {
+    float: right;
+    position: relative;
+    height: 100% !important;
+    width: 18%;
+  }
+}
+.messages {
+  height: 16em;
+  position: relative;
+  overflow: auto;
+}
