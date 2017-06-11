@@ -16,6 +16,18 @@
       <p class="center">
         <%= link_to gravatar_for(@recipe.user), user_path(@recipe.user) %>
       </p>
+      
+      <div class="row liking">
+        <div class="col-md-8">
+          <%= link_to like_recipe_path(@recipe, like: true), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-up"></i>
+          <% end %><%= @recipe.thumbs_up_total %>||
+          <%= link_to like_recipe_path(@recipe, like: false), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-down"></i>
+          <% end %><%= @recipe.thumbs_down_total %>
+        </div>
+      </div>
+      
       <p class="center">
         <small><%= @recipe.user.username.capitalize %></small>
         <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
